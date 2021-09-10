@@ -30,7 +30,7 @@ namespace Custom096.Configs
         /// Gets or sets how much damage Scp096 will deal to a non-target.
         /// </summary>
         [Description("How much damage Scp096 will deal to a non-target.")]
-        public float NonTargetDamage { get; set; } = 35f;
+        public float NonTargetDamage { get; set; } = 40f;
 
         /// <summary>
         /// Gets or sets the duration, in seconds, of the charge.

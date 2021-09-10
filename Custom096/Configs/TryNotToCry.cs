@@ -18,7 +18,7 @@ namespace Custom096.Configs
         /// Gets or sets a value indicating whether Scp096 can use TNTC on any surface.
         /// </summary>
         [Description("Whether Scp096 can use TNTC on any surface.")]
-        public bool AnySurface { get; set; } = true;
+        public bool AnySurface { get; set; } = false;
 
         /// <summary>
         /// Gets or sets the maximum distance that Scp096 can TNTC against a surface. Requires AnySurface to be enabled.
