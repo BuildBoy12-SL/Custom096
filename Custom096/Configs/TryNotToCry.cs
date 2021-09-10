@@ -10,7 +10,7 @@ namespace Custom096.Configs
     using System.ComponentModel;
 
     /// <summary>
-    /// Try not to cry settings for Scp096.
+    /// Settings related to Scp096's "Try Not To Cry" state.
     /// </summary>
     public class TryNotToCry
     {

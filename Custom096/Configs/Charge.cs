@@ -10,7 +10,7 @@ namespace Custom096.Configs
     using System.ComponentModel;
 
     /// <summary>
-    /// All related settings for Scp096's charging state.
+    /// Settings related to Scp096's charge.
     /// </summary>
     public class Charge
     {
@@ -45,9 +45,8 @@ namespace Custom096.Configs
         public float Cooldown { get; set; } = 7f;
 
         /// <summary>
-        /// Gets or sets the speed of the charge.
+        /// Gets or sets the range that Scp096 can hit targets while charging.
         /// </summary>
-        [Description("The speed of the charge.")]
-        public float Speed { get; set; } = 25f;
+        public float HitboxSize { get; set; } = 1.5f;
     }
 }

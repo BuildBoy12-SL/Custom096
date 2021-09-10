@@ -36,6 +36,12 @@ namespace Custom096
         public Rage Rage { get; set; } = new Rage();
 
         /// <summary>
+        /// Gets or sets all related settings for Scp096's swinging state.
+        /// </summary>
+        [Description("All related settings for Scp096's swinging state.")]
+        public Swing Swing { get; set; } = new Swing();
+
+        /// <summary>
         /// Gets or sets all related settings for Scp096's TNTC state.
         /// </summary>
         [Description("All related settings for Scp096's TNTC state.")]

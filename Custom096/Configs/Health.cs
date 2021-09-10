@@ -10,7 +10,7 @@ namespace Custom096.Configs
     using System.ComponentModel;
 
     /// <summary>
-    /// All health related settings for Scp096.
+    /// Settings related to Scp096's health and hume shield.
     /// </summary>
     public class Health
     {

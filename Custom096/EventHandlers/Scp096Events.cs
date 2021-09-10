@@ -42,9 +42,13 @@ namespace Custom096.EventHandlers
             Exiled.Events.Handlers.Scp096.ChargingPlayer -= OnChargingPlayer;
         }
 
+        private void OnAddingTarget(AddingTargetEventArgs ev)
+        {
+        }
+
         private void OnCharging(ChargingEventArgs ev)
         {
-            ev.Scp096.SetMovementSpeed(config.Charge.Speed);
+            ev.Scp096.SetMovementSpeed(25f);
             ev.Scp096._chargeTimeRemaining = config.Charge.Duration;
             ev.Scp096.PlayerState = Scp096PlayerState.Charging;
             ev.Scp096.Hub.fpc.NetworkmovementOverride = new Vector2(1f, 0.0f);
