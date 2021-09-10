@@ -19,6 +19,7 @@ namespace Custom096.Patches
     /// <summary>
     /// Patches <see cref="Scp096.Enrage"/> to implement <see cref="Rage.DefaultRageTime"/>.
     /// </summary>
+    [HarmonyPatch(typeof(Scp096), nameof(Scp096.Enrage))]
     internal static class Enrage
     {
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)

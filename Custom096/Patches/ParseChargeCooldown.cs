@@ -20,11 +20,10 @@ namespace Custom096.Patches
     {
         private static bool Prefix(Scp096 __instance, ref float __result)
         {
-            float cooldown = Plugin.Instance.Config.Charge.BaseCooldown;
+            __result = Plugin.Instance.Config.Charge.BaseCooldown;
             if (__instance._chargeKilled)
-                cooldown -= Plugin.Instance.Config.Charge.HitTargetReward;
+                __result -= Plugin.Instance.Config.Charge.HitTargetReward;
 
-            __result = cooldown;
             return false;
         }
     }
