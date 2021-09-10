@@ -29,6 +29,7 @@ namespace Custom096.EventHandlers
         /// </summary>
         public void Subscribe()
         {
+            Exiled.Events.Handlers.Scp096.AddingTarget += OnAddingTarget;
             Exiled.Events.Handlers.Scp096.Charging += OnCharging;
             Exiled.Events.Handlers.Scp096.ChargingPlayer += OnChargingPlayer;
         }
@@ -38,12 +39,27 @@ namespace Custom096.EventHandlers
         /// </summary>
         public void Unsubscribe()
         {
+            Exiled.Events.Handlers.Scp096.AddingTarget -= OnAddingTarget;
             Exiled.Events.Handlers.Scp096.Charging -= OnCharging;
             Exiled.Events.Handlers.Scp096.ChargingPlayer -= OnChargingPlayer;
         }
 
         private void OnAddingTarget(AddingTargetEventArgs ev)
         {
+            if (ev.Target.SessionVariables.ContainsKey("IsNPC"))
+            {
+                ev.IsAllowed = false;
+                return;
+            }
+
+            if (ev.Target.Role == RoleType.Tutorial && !config.Rage.TutorialsCanEnrage)
+            {
+                ev.IsAllowed = false;
+                return;
+            }
+
+            ev.Scp096.MaxArtificialHealth += Mathf.Clamp(config.Health.AhpPerTarget, 0, config.Health.MaximumAhp - ev.Scp096.MaxArtificialHealth);
+            ev.Scp096.ArtificialHealth += (ushort)Mathf.Clamp(config.Health.AhpPerTarget, 0, ev.Scp096.MaxArtificialHealth - ev.Scp096.ArtificialHealth);
         }
 
         private void OnCharging(ChargingEventArgs ev)

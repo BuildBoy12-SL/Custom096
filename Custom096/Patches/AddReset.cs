@@ -33,8 +33,8 @@ namespace Custom096.Patches
                 new CodeInstruction(OpCodes.Call, PropertyGetter(typeof(Plugin), nameof(Plugin.Instance))),
                 new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Plugin), nameof(Plugin.Config))),
                 new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Config), nameof(Config.Rage))),
-                new CodeInstruction(OpCodes.Dup),
                 new CodeInstruction(OpCodes.Stloc_S, rageConfig.LocalIndex),
+                new CodeInstruction(OpCodes.Ldloc_S, rageConfig.LocalIndex),
                 new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Rage), nameof(Rage.RageTimePerTarget))),
             });
 

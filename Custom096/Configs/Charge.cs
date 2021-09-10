@@ -39,14 +39,21 @@ namespace Custom096.Configs
         public float Duration { get; set; } = 0.8f;
 
         /// <summary>
-        /// Gets or sets the cooldown, in seconds, between charges.
-        /// </summary>
-        [Description("The cooldown, in seconds, between charges.")]
-        public float Cooldown { get; set; } = 7f;
-
-        /// <summary>
         /// Gets or sets the range that Scp096 can hit targets while charging.
         /// </summary>
+        [Description("The range that Scp096 can hit targets while charging.")]
         public float HitboxSize { get; set; } = 1.5f;
+
+        /// <summary>
+        /// Gets or sets the starting cooldown, in seconds, of the charge.
+        /// </summary>
+        [Description("The starting cooldown of the charge.")]
+        public float BaseCooldown { get; set; } = 6f;
+
+        /// <summary>
+        /// Gets or sets the amount of time, in seconds, to reduce the cooldown by if a target was hit.
+        /// </summary>
+        [Description("The amount of time, in seconds, to reduce the cooldown by if a target was hit.")]
+        public float HitTargetReward { get; set; } = 2.5f;
     }
 }
