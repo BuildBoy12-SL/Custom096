@@ -49,11 +49,5 @@ namespace Custom096.Configs
         /// </summary>
         [Description("Whether the flashed and deafened effects received from flashbangs will be severely reduced while a Scp096 is enraged.")]
         public bool DisableFlashing { get; set; } = false;
-
-        /// <summary>
-        /// Gets or sets how many seconds of the charge timer will be reduced on kill.
-        /// </summary>
-        [Description("How many seconds of the charge timer that will be reduced on kill.")]
-        public float ChargeTimeOnKill { get; set; } = 0f;
     }
 }

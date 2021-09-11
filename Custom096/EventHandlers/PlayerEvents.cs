@@ -55,7 +55,7 @@ namespace Custom096.EventHandlers
             if (!(ev.Killer?.CurrentScp is PlayableScps.Scp096 scp096))
                 return;
 
-            scp096._chargeCooldown -= config.Rage.ChargeTimeOnKill;
+            scp096._chargeCooldown -= config.Charge.HitTargetReward;
             scp096.AddReset();
         }
     }
