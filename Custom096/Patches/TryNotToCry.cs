@@ -24,7 +24,7 @@ namespace Custom096.Patches
     [HarmonyPatch(typeof(Scp096), nameof(Scp096.TryNotToCry))]
     internal static class TryNotToCry
     {
-        private static int TntcLayer { get; } = LayerMask.GetMask("Default", "Door", "Glass");
+        private static readonly int TntcLayer = LayerMask.GetMask("Default", "Door", "Glass");
 
         private static bool Prefix(Scp096 __instance)
         {

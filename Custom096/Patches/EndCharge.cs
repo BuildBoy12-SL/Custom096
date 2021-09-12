@@ -5,6 +5,8 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using Exiled.API.Features;
+
 namespace Custom096.Patches
 {
 #pragma warning disable SA1118
@@ -37,8 +39,20 @@ namespace Custom096.Patches
                 new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Charge), nameof(Charge.Cooldown))),
             });
 
+            newInstructions.InsertRange(newInstructions.Count - 1, new[]
+            {
+                new CodeInstruction(OpCodes.Ldarg_0),
+                new CodeInstruction(OpCodes.Ldsfld, Field(typeof(Scp096), nameof(Scp096._chargeCooldown))),
+                new CodeInstruction(OpCodes.Box, typeof(float)),
+                new CodeInstruction(OpCodes.Call, Method(typeof(Log), nameof(Log.Error))),
+                new CodeInstruction(OpCodes.Pop),
+            });
+
             for (int z = 0; z < newInstructions.Count; z++)
+            {
+                Log.Info(newInstructions[z]);
                 yield return newInstructions[z];
+            }
 
             ListPool<CodeInstruction>.Shared.Return(newInstructions);
         }
