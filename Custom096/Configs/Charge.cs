@@ -48,12 +48,12 @@ namespace Custom096.Configs
         /// Gets or sets the starting cooldown, in seconds, of the charge.
         /// </summary>
         [Description("The starting cooldown of the charge.")]
-        public float Cooldown { get; set; } = 7f;
+        public float Cooldown { get; set; } = 5f;
 
         /// <summary>
         /// Gets or sets the amount of time, in seconds, to reduce the cooldown by for each killed player.
         /// </summary>
         [Description("The amount of time, in seconds, to reduce the cooldown by for each killed player.")]
-        public float HitTargetReward { get; set; } = 2.5f;
+        public float HitTargetReward { get; set; } = 2f;
     }
 }

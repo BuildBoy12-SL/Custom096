@@ -25,6 +25,7 @@ namespace Custom096.Patches
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             List<CodeInstruction> newInstructions = ListPool<CodeInstruction>.Shared.Rent(instructions);
+
             int index = newInstructions.FindLastIndex(instruction => instruction.opcode == OpCodes.Ldarg_0);
             Label setRechargeLabel = newInstructions[index].labels[0];
 

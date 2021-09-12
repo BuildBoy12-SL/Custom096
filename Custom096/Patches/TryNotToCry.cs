@@ -7,11 +7,16 @@
 
 namespace Custom096.Patches
 {
+#pragma warning disable SA1118
 #pragma warning disable SA1313
+    using System.Collections.Generic;
+    using System.Reflection.Emit;
     using HarmonyLib;
     using Interactables.Interobjects.DoorUtils;
+    using NorthwoodLib.Pools;
     using PlayableScps;
     using UnityEngine;
+    using static HarmonyLib.AccessTools;
 
     /// <summary>
     /// Patches <see cref="Scp096.TryNotToCry"/> to implement <see cref="Configs.TryNotToCry.AnySurface"/> and <see cref="Configs.TryNotToCry.MaximumDistance"/>.
@@ -35,6 +40,28 @@ namespace Custom096.Patches
 
             __instance.PlayerState = Scp096PlayerState.TryNotToCry;
             return false;
+        }
+
+        private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            List<CodeInstruction> newInstructions = ListPool<CodeInstruction>.Shared.Rent(instructions);
+
+            int index = newInstructions.FindIndex(instruction => instruction.opcode == OpCodes.Ldc_R4);
+
+            newInstructions.RemoveAt(index);
+
+            newInstructions.InsertRange(index, new[]
+            {
+                new CodeInstruction(OpCodes.Call, PropertyGetter(typeof(Plugin), nameof(Plugin.Instance))),
+                new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Plugin), nameof(Plugin.Config))),
+                new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Config), nameof(Config.TryNotToCry))),
+                new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Configs.TryNotToCry), nameof(Configs.TryNotToCry.MaximumDistance))),
+            });
+
+            for (int z = 0; z < newInstructions.Count; z++)
+                yield return newInstructions[z];
+
+            ListPool<CodeInstruction>.Shared.Return(newInstructions);
         }
     }
 }
