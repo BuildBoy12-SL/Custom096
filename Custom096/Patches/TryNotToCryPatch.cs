@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="TryNotToCry.cs" company="Build">
+// <copyright file="TryNotToCryPatch.cs" company="Build">
 // Copyright (c) Build. All rights reserved.
 // Licensed under the CC BY-SA 3.0 license.
 // </copyright>
@@ -22,7 +22,7 @@ namespace Custom096.Patches
     /// Patches <see cref="Scp096.TryNotToCry"/> to implement <see cref="Configs.TryNotToCry.AnySurface"/> and <see cref="Configs.TryNotToCry.MaximumDistance"/>.
     /// </summary>
     [HarmonyPatch(typeof(Scp096), nameof(Scp096.TryNotToCry))]
-    internal static class TryNotToCry
+    internal static class TryNotToCryPatch
     {
         private static readonly int TntcLayer = LayerMask.GetMask("Default", "Door", "Glass");
 

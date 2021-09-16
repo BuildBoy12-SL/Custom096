@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="ResetShield.cs" company="Build">
+// <copyright file="ResetShieldPatch.cs" company="Build">
 // Copyright (c) Build. All rights reserved.
 // Licensed under the CC BY-SA 3.0 license.
 // </copyright>
@@ -17,7 +17,7 @@ namespace Custom096.Patches
     /// Patches and overrides <see cref="Scp096.ResetShield"/> to aid in the implementation of <see cref="Health.DefaultAhp"/>.
     /// </summary>
     [HarmonyPatch(typeof(Scp096), nameof(Scp096.ResetShield))]
-    internal static class ResetShield
+    internal static class ResetShieldPatch
     {
         private static bool Prefix(Scp096 __instance)
         {

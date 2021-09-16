@@ -30,7 +30,7 @@ namespace Custom096.Configs
         /// Gets or sets how much rage time Scp096 will have by default.
         /// </summary>
         [Description("How much rage time Scp096 will have by default.")]
-        public float DefaultRageTime { get; set; } = 7f;
+        public float DefaultRageTime { get; set; } = 12f;
 
         /// <summary>
         /// Gets or sets how much rage time Scp096 will gain per target gained.

@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="AddReset.cs" company="Build">
+// <copyright file="AddResetPatch.cs" company="Build">
 // Copyright (c) Build. All rights reserved.
 // Licensed under the CC BY-SA 3.0 license.
 // </copyright>
@@ -20,7 +20,7 @@ namespace Custom096.Patches
     /// Patches <see cref="Scp096.AddReset"/> with modified values from <see cref="Configs.Rage"/>.
     /// </summary>
     [HarmonyPatch(typeof(Scp096), nameof(Scp096.AddReset))]
-    internal static class AddReset
+    internal static class AddResetPatch
     {
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
         {

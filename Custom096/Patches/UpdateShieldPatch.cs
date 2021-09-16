@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="EndAttack.cs" company="Build">
+// <copyright file="UpdateShieldPatch.cs" company="Build">
 // Copyright (c) Build. All rights reserved.
 // Licensed under the CC BY-SA 3.0 license.
 // </copyright>
@@ -17,25 +17,23 @@ namespace Custom096.Patches
     using static HarmonyLib.AccessTools;
 
     /// <summary>
-    /// Patches <see cref="Scp096.EndAttack"/> to implement <see cref="Swing.AttackCooldown"/>.
+    /// Patches <see cref="Scp096.UpdateShield"/> to implement <see cref="Health.RechargeRate"/>.
     /// </summary>
-    [HarmonyPatch(typeof(Scp096), nameof(Scp096.EndAttack))]
-    internal static class EndAttack
+    [HarmonyPatch(typeof(Scp096), nameof(Scp096.UpdateShield))]
+    internal static class UpdateShieldPatch
     {
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             List<CodeInstruction> newInstructions = ListPool<CodeInstruction>.Shared.Rent(instructions);
+            int index = newInstructions.FindIndex(instruction => instruction.OperandIs(PropertySetter(typeof(Scp096), nameof(Scp096.ShieldRechargeRate)))) - 2;
 
-            int index = newInstructions.FindIndex(instruction => instruction.opcode == OpCodes.Ldc_R4);
-
-            newInstructions.RemoveAt(index);
-
+            newInstructions.RemoveRange(index, 2);
             newInstructions.InsertRange(index, new[]
             {
                 new CodeInstruction(OpCodes.Call, PropertyGetter(typeof(Plugin), nameof(Plugin.Instance))),
                 new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Plugin), nameof(Plugin.Config))),
-                new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Config), nameof(Config.Swing))),
-                new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Swing), nameof(Swing.AttackCooldown))),
+                new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Config), nameof(Config.Health))),
+                new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Health), nameof(Health.RechargeRate))),
             });
 
             for (int z = 0; z < newInstructions.Count; z++)

@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="OnDamage.cs" company="Build">
+// <copyright file="OnDamagePatch.cs" company="Build">
 // Copyright (c) Build. All rights reserved.
 // Licensed under the CC BY-SA 3.0 license.
 // </copyright>
@@ -20,7 +20,7 @@ namespace Custom096.Patches
     /// Patches <see cref="Scp096.OnDamage"/> to implement <see cref="Rage.EnrageOnDamage"/> and <see cref="Health.RechargeDelayAfterDamage"/>.
     /// </summary>
     [HarmonyPatch(typeof(Scp096), nameof(Scp096.OnDamage))]
-    internal static class OnDamage
+    internal static class OnDamagePatch
     {
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {

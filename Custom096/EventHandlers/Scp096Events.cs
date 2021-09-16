@@ -30,7 +30,6 @@ namespace Custom096.EventHandlers
         public void Subscribe()
         {
             Exiled.Events.Handlers.Scp096.AddingTarget += OnAddingTarget;
-            Exiled.Events.Handlers.Scp096.Charging += OnCharging;
             Exiled.Events.Handlers.Scp096.ChargingPlayer += OnChargingPlayer;
         }
 
@@ -40,7 +39,6 @@ namespace Custom096.EventHandlers
         public void Unsubscribe()
         {
             Exiled.Events.Handlers.Scp096.AddingTarget -= OnAddingTarget;
-            Exiled.Events.Handlers.Scp096.Charging -= OnCharging;
             Exiled.Events.Handlers.Scp096.ChargingPlayer -= OnChargingPlayer;
         }
 
@@ -60,15 +58,6 @@ namespace Custom096.EventHandlers
 
             ev.Scp096.MaxArtificialHealth += Mathf.Clamp(config.Health.AhpPerTarget, 0, config.Health.MaximumAhp - ev.Scp096.MaxArtificialHealth);
             ev.Scp096.ArtificialHealth += (ushort)Mathf.Clamp(config.Health.AhpPerTarget, 0, ev.Scp096.MaxArtificialHealth - ev.Scp096.ArtificialHealth);
-        }
-
-        private void OnCharging(ChargingEventArgs ev)
-        {
-            ev.Scp096.SetMovementSpeed(25f);
-            ev.Scp096._chargeTimeRemaining = config.Charge.Duration;
-            ev.Scp096.PlayerState = Scp096PlayerState.Charging;
-            ev.Scp096.Hub.fpc.NetworkmovementOverride = new Vector2(1f, 0.0f);
-            ev.IsAllowed = false;
         }
 
         private void OnChargingPlayer(ChargingPlayerEventArgs ev)

@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="ServerDoAttack.cs" company="Build">
+// <copyright file="ChargePatch.cs" company="Build">
 // Copyright (c) Build. All rights reserved.
 // Licensed under the CC BY-SA 3.0 license.
 // </copyright>
@@ -17,16 +17,16 @@ namespace Custom096.Patches
     using static HarmonyLib.AccessTools;
 
     /// <summary>
-    /// Patches <see cref="Scp096.ServerDoAttack"/> to implement <see cref="Swing.AttackDuration"/>.
+    /// Patches <see cref="Scp096.Charge"/> to implement <see cref="Charge.Duration"/>.
     /// </summary>
-    [HarmonyPatch(typeof(Scp096), nameof(Scp096.ServerDoAttack))]
-    internal static class ServerDoAttack
+    [HarmonyPatch(typeof(Scp096), nameof(Scp096.Charge))]
+    internal static class ChargePatch
     {
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             List<CodeInstruction> newInstructions = ListPool<CodeInstruction>.Shared.Rent(instructions);
 
-            int index = newInstructions.FindIndex(instruction => instruction.opcode == OpCodes.Ldc_R4);
+            int index = newInstructions.FindIndex(instruction => instruction.opcode == OpCodes.Stfld) - 1;
 
             newInstructions.RemoveAt(index);
 
@@ -34,8 +34,8 @@ namespace Custom096.Patches
             {
                 new CodeInstruction(OpCodes.Call, PropertyGetter(typeof(Plugin), nameof(Plugin.Instance))),
                 new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Plugin), nameof(Plugin.Config))),
-                new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Config), nameof(Config.Swing))),
-                new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Swing), nameof(Swing.AttackDuration))),
+                new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Config), nameof(Config.Charge))),
+                new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Charge), nameof(Charge.Duration))),
             });
 
             for (int z = 0; z < newInstructions.Count; z++)

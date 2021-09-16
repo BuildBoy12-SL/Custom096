@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="SetupShield.cs" company="Build">
+// <copyright file="SetupShieldPatch.cs" company="Build">
 // Copyright (c) Build. All rights reserved.
 // Licensed under the CC BY-SA 3.0 license.
 // </copyright>
@@ -16,7 +16,7 @@ namespace Custom096.Patches
     /// Patches <see cref="Scp096.SetupShield"/> to implement <see cref="Health.DefaultAhp"/> and <see cref="Health.AhpMultiplier"/>.
     /// </summary>
     [HarmonyPatch(typeof(Scp096), nameof(Scp096.SetupShield))]
-    internal static class SetupShield
+    internal static class SetupShieldPatch
     {
         private static bool Prefix(Scp096 __instance)
         {
