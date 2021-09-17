@@ -47,6 +47,7 @@ namespace Custom096.Configs
         /// <summary>
         /// Gets or sets how much hume shield will be regenerated per second.
         /// </summary>
+        [Description("How much hume shield will be regenerated per second.")]
         public float RechargeRate { get; set; } = 40f;
     }
 }

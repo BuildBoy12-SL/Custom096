@@ -23,7 +23,7 @@ namespace Custom096.Configs
         /// <summary>
         /// Gets or sets the maximum distance that Scp096 can TNTC against a surface.
         /// </summary>
-        [Description("The maximum distance that Scp096 can TNTC against a surface. Requires AnySurface to be enabled.")]
+        [Description("The maximum distance that Scp096 can TNTC against a surface.")]
         public float MaximumDistance { get; set; } = 1f;
     }
 }
