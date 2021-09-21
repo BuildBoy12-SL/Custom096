@@ -35,8 +35,8 @@ namespace Custom096.Patches
                 return false;
 
             DoorVariant door = hitInfo.collider.gameObject.GetComponentInParent<DoorVariant>();
-            if (door && !door.IsConsideredOpen() && !Scp096._takenDoors.ContainsKey(__instance.Hub.gameObject))
-                Scp096._takenDoors.Add(__instance.Hub.gameObject, door);
+            if (door && !door.IsConsideredOpen() && !Scp096._takenDoors.ContainsKey(__instance.Hub))
+                Scp096._takenDoors.Add(__instance.Hub, door);
 
             __instance.PlayerState = Scp096PlayerState.TryNotToCry;
             return false;

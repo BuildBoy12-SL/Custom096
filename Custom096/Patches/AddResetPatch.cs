@@ -27,10 +27,12 @@ namespace Custom096.Patches
             List<CodeInstruction> newInstructions = ListPool<CodeInstruction>.Shared.Rent(instructions);
             var rageConfig = generator.DeclareLocal(typeof(Rage));
 
-            newInstructions.RemoveRange(0, 2);
-            newInstructions.InsertRange(0, new[]
+            int index = newInstructions.FindIndex(instruction => instruction.opcode == OpCodes.Stloc_0) - 2;
+            List<Label> labels = newInstructions[index].labels;
+            newInstructions.RemoveRange(index, 2);
+            newInstructions.InsertRange(index, new[]
             {
-                new CodeInstruction(OpCodes.Call, PropertyGetter(typeof(Plugin), nameof(Plugin.Instance))),
+                new CodeInstruction(OpCodes.Call, PropertyGetter(typeof(Plugin), nameof(Plugin.Instance))).WithLabels(labels),
                 new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Plugin), nameof(Plugin.Config))),
                 new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Config), nameof(Config.Rage))),
                 new CodeInstruction(OpCodes.Stloc_S, rageConfig.LocalIndex),
@@ -40,12 +42,11 @@ namespace Custom096.Patches
 
             for (int i = 0; i < newInstructions.Count; i++)
             {
-                if (!newInstructions[i].OperandIs(PropertyGetter(typeof(Scp096), nameof(Scp096.MaximumAddedEnrageTime))))
+                if (newInstructions[i].opcode != OpCodes.Ldc_R4)
                     continue;
 
-                int removalRange = i - 1;
-                newInstructions.RemoveRange(removalRange, 2);
-                newInstructions.InsertRange(removalRange, new[]
+                newInstructions.RemoveAt(i);
+                newInstructions.InsertRange(i, new[]
                 {
                     new CodeInstruction(OpCodes.Ldloc_S, rageConfig.LocalIndex),
                     new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(Rage), nameof(Rage.MaximumAddedRageTime))),
