@@ -26,7 +26,7 @@ namespace Custom096.Patches
         {
             List<CodeInstruction> newInstructions = ListPool<CodeInstruction>.Shared.Rent(instructions);
 
-            int index = newInstructions.FindIndex(instruction => instruction.opcode == OpCodes.Ldc_R4);
+            int index = newInstructions.FindLastIndex(instruction => instruction.opcode == OpCodes.Ldc_R4);
 
             newInstructions.RemoveAt(index);
 

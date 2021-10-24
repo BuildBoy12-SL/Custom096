@@ -27,6 +27,11 @@ namespace Custom096.Configs
         public float WindupTime { get; set; } = 4f;
 
         /// <summary>
+        /// Gets or sets a value indicating whether the distance calculations
+        /// </summary>
+        public bool StripWindupTimeDelay { get; set; } = true;
+
+        /// <summary>
         /// Gets or sets a value indicating whether damage will enrage Scp096.
         /// </summary>
         [Description("Whether damage will enrage Scp096.")]
