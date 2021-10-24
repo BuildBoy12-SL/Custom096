@@ -21,6 +21,12 @@ namespace Custom096.Configs
         public bool TutorialsCanEnrage { get; set; } = false;
 
         /// <summary>
+        /// Gets or sets the duration of the windup stage.
+        /// </summary>
+        [Description("The duration of the windup stage.")]
+        public float WindupTime { get; set; } = 4f;
+
+        /// <summary>
         /// Gets or sets a value indicating whether damage will enrage Scp096.
         /// </summary>
         [Description("Whether damage will enrage Scp096.")]

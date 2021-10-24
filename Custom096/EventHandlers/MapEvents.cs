@@ -8,6 +8,7 @@
 namespace Custom096.EventHandlers
 {
     using System.Linq;
+    using Exiled.API.Features;
     using Exiled.Events.EventArgs;
     using PlayableScps;
 
@@ -45,9 +46,12 @@ namespace Custom096.EventHandlers
             if (ev.IsFrag || !config.Rage.DisableFlashing)
                 return;
 
-            foreach (var target in ev.TargetsToAffect.ToList())
+            foreach (Player target in ev.TargetsToAffect.ToList())
             {
-                if (target.CurrentScp is Scp096 scp096 && scp096.Enraged)
+                if (target == null || target.SessionVariables.ContainsKey("IsNPC"))
+                    continue;
+
+                if (target.CurrentScp is PlayableScps.Scp096 scp096 && scp096.Enraged)
                     ev.TargetsToAffect.Remove(target);
             }
         }
