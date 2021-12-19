@@ -24,7 +24,7 @@ namespace Custom096.Configs
         /// Gets or sets the duration of the windup stage.
         /// </summary>
         [Description("The duration of the windup stage.")]
-        public float WindupTime { get; set; } = 4f;
+        public float WindupTime { get; set; } = 6f;
 
         /// <summary>
         /// Gets or sets a value indicating whether the distance calculations

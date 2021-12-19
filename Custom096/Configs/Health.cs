@@ -18,7 +18,7 @@ namespace Custom096.Configs
         /// Gets or sets how much ahp Scp096 should start with.
         /// </summary>
         [Description("How much ahp Scp096 should start with.")]
-        public int DefaultAhp { get; set; } = 1000;
+        public float DefaultAhp { get; set; } = 1000f;
 
         /// <summary>
         /// Gets or sets the amount of hume to be gained for each target.
@@ -48,6 +48,6 @@ namespace Custom096.Configs
         /// Gets or sets how much hume shield will be regenerated per second.
         /// </summary>
         [Description("How much hume shield will be regenerated per second.")]
-        public float RechargeRate { get; set; } = 40f;
+        public float RechargeRate { get; set; } = 15f;
     }
 }

@@ -22,7 +22,7 @@ namespace Custom096.Patches
         private static bool Prefix(Scp096 __instance)
         {
             __instance.CurMaxShield = Plugin.Instance.Config.Health.DefaultAhp;
-            __instance.ShieldAmount = Mathf.Min(Plugin.Instance.Config.Health.DefaultAhp, __instance.Hub.playerStats.ArtificialHealth);
+            __instance.ShieldAmount = Mathf.Min(__instance.ShieldAmount, Plugin.Instance.Config.Health.DefaultAhp);
             return false;
         }
     }

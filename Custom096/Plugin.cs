@@ -28,7 +28,7 @@ namespace Custom096
         public static Plugin Instance { get; private set; }
 
         /// <inheritdoc />
-        public override Version RequiredExiledVersion { get; } = new Version(3, 0, 0);
+        public override Version RequiredExiledVersion { get; } = new Version(4, 1, 7);
 
         /// <inheritdoc />
         public override void OnEnabled()

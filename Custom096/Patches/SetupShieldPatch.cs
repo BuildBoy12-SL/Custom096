@@ -20,14 +20,10 @@ namespace Custom096.Patches
     {
         private static bool Prefix(Scp096 __instance)
         {
-            __instance._prevArtificialHpDelay = __instance.Hub.playerStats.ArtificialHpDecay;
-            __instance._prevArtificialHpRatio = __instance.Hub.playerStats.ArtificialNormalRatio;
-            __instance._prevMaxArtificialHp = __instance.Hub.playerStats.MaxArtificialHealth;
-
             Health health = Plugin.Instance.Config.Health;
-            __instance.Hub.playerStats.NetworkMaxArtificialHealth = health.DefaultAhp;
+            __instance.Shield.Limit = health.DefaultAhp;
+            __instance.Shield.DecayRate = -health.RechargeRate;
             __instance.ShieldAmount = health.DefaultAhp;
-            __instance.Hub.playerStats.NetworkArtificialNormalRatio = health.AhpMultiplier;
             return false;
         }
     }

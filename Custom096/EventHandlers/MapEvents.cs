@@ -8,6 +8,7 @@
 namespace Custom096.EventHandlers
 {
     using System.Linq;
+    using Exiled.API.Enums;
     using Exiled.API.Features;
     using Exiled.Events.EventArgs;
     using PlayableScps;
@@ -43,7 +44,7 @@ namespace Custom096.EventHandlers
 
         private void OnExplodingGrenade(ExplodingGrenadeEventArgs ev)
         {
-            if (ev.IsFrag || !config.Rage.DisableFlashing)
+            if (ev.GrenadeType == GrenadeType.FragGrenade || !config.Rage.DisableFlashing)
                 return;
 
             foreach (Player target in ev.TargetsToAffect.ToList())
